@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  font-family: "Lato", sans-serif;
+}
+h1,
+h2,
+p {
+  text-align: center;
+  color: #fff;
+}
+h1 {
+  font-size: 30px;
+}
+h2 {
+  font-size: 20px;
+}
+p {
+  font-size: 90px;
+}
+
+section {
+  line-height: 2;
+  color: #fff;
+  margin: 0;
+  font-size: 20px;
+}
+
+ul {
+  display: inline;
+  color: white;
+}
+li {
+  list-style: none;
+}
+
+.container {
+  width: 650px;
+  margin: 100px auto;
+  padding: 25px;
+  background: #5a8dce;
+  border: solid white 2px;
+  border-radius: 4px;
+}
+
+hr {
+  margin: 0;
+}
+.top-row {
+  text-align: center;
+}
+
+.fivedays {
+  margin: 5px 15px;
+  padding: 0px 5px;
+}
+emoji {
+  font-size: 20px;
+}
+button {
+  background: #e5e5e5;
+  box-shadow: 2px;
+  border: 1px #4f4f4f solid;
+  border-radius: 2px;
+  padding: 2px 5px;
+}
