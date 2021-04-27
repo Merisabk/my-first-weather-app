@@ -42,10 +42,26 @@ function search(event) {
   axios.get(apiUrl).then(showTemp);
 }
 
-function showPosition(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-}
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
+
+function currentTemperature(response) {
+  let temperature = Math.round(response.data.main.temp);
+  let currentTemp = document.querySelector("#current-location");
+  currentTemp.innerHTML = `${temperature}ºC`;
+}
+
+function currentLocation(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "95322a94bc8878b37c06b9562667a92f";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(currentTemperature);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(currentLocation);
+}
+
+let button = document.querySelector("button");
+button.addEventListener("click", getCurrentPosition);
