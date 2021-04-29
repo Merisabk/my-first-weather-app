@@ -8,13 +8,30 @@ let days = [
   "Saturday",
 ];
 
-let currentTime = new Date();
-let currentDay = days[currentTime.getDay()];
-let hours = currentTime.getHours();
-let minutes = currentTime.getMinutes();
+//let currentTime = new Date();
+//let currentDay = days[currentTime.getDay()];
+//let hours = currentTime.getHours();
+//let minutes = currentTime.getMinutes();
 
-let displayTime = document.querySelector("#displayTime");
-displayTime.innerHTML = `${currentDay}, ${hours}:${minutes}`;
+//let displayTime = document.querySelector("#displayTime");
+//displayTime.innerHTML = `${currentDay}, ${hours}:${minutes}`;
+
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
 
 function showTemp(response) {
   console.log(response.data);
@@ -29,11 +46,13 @@ function showTemp(response) {
   let descriptionElement = document.querySelector("#description");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
+  let dateElement = document.querySelector("#date");
   temperatureElement.innerHTML = `${temperature}ºC`;
   cityElement.innerHTML = city;
   descriptionElement.innerHTML = description;
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
   windElement.innerHTML = `Wind: ${wind} km/h`;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 function search(event) {
