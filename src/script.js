@@ -17,17 +17,23 @@ let displayTime = document.querySelector("#displayTime");
 displayTime.innerHTML = `${currentDay}, ${hours}:${minutes}`;
 
 function showTemp(response) {
-  console.log(response);
+  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
   let description = response.data.weather[0].description;
+  let wind = Math.round(response.data.wind.speed);
+  let humidity = response.data.main.humidity;
   //let time =
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
-  let temperatureDescription = document.querySelector("#tempDescription");
+  let descriptionElement = document.querySelector("#description");
+  let windElement = document.querySelector("#wind");
+  let humidityElement = document.querySelector("#humidity");
   temperatureElement.innerHTML = `${temperature}ºC`;
   cityElement.innerHTML = city;
-  temperatureDescription.innerHTML = description;
+  descriptionElement.innerHTML = description;
+  humidityElement.innerHTML = `Humidity: ${humidity}%`;
+  windElement.innerHTML = `Wind: ${wind} km/h`;
 }
 
 function search(event) {
