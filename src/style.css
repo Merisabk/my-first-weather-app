@@ -61,9 +61,7 @@ hr {
   margin: 5px 15px;
   padding: 0px 5px;
 }
-emoji {
-  font-size: 20px;
-}
+
 button {
   background: #e5e5e5;
   box-shadow: 2px;
@@ -78,6 +76,10 @@ button {
   opacity: 1;
 }
 
-#description {
+#description:first-letter {
   text-transform: capitalize;
+}
+
+#mainIcon {
+  text-align: center;
 }
