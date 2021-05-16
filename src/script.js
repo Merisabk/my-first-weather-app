@@ -19,7 +19,13 @@ let days = [
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
   let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let days = [
     "Sunday",
     "Monday",
@@ -34,13 +40,12 @@ function formatDate(timestamp) {
 }
 
 function showTemp(response) {
-  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
   let description = response.data.weather[0].description;
   let wind = Math.round(response.data.wind.speed);
   let humidity = response.data.main.humidity;
-  //let time =
+
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
@@ -48,6 +53,7 @@ function showTemp(response) {
   let humidityElement = document.querySelector("#humidity");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
+
   temperatureElement.innerHTML = `${temperature}ºC`;
   cityElement.innerHTML = city;
   descriptionElement.innerHTML = description;
@@ -60,20 +66,21 @@ function showTemp(response) {
   );
 }
 
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-text-input");
-  let city = document.querySelector("#city");
-  city.innerHTML = `${searchInput.value}`;
+function search(city) {
   let apiKey = "95322a94bc8878b37c06b9562667a92f";
   let units = "metric";
-
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.innerHTML}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemp);
 }
 
+function handleSearch(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-text-input");
+  search(searchInput.value);
+}
+
 let form = document.querySelector("#search-form");
-form.addEventListener("submit", search);
+form.addEventListener("submit", handleSearch);
 
 function currentTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
@@ -95,3 +102,5 @@ function getCurrentPosition() {
 
 let button = document.querySelector("button");
 button.addEventListener("click", getCurrentPosition);
+
+search("London");
