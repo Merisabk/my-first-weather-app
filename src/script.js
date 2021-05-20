@@ -68,7 +68,7 @@ function displayForecast(response) {
          <div class="col-1" class="weather-forcast-temp-max">${Math.round(
            forecastDay.temp.max
          )}   </div>
-          <span class="col-1" class="weather-forcast-temp-min"> ${Math.round(
+          <span class="col-1" class="weather-forcast-temp-min" style= "opacity:0.6;"> ${Math.round(
             forecastDay.temp.min
           )}</span> </div>`;
     }
