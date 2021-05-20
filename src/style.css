@@ -86,4 +86,10 @@ button {
 }
 .weather-forecast {
   margin-top: 30px;
+  color: white;
+  font-size: 25px;
+}
+#coded-by {
+  font-size: 12px;
+  margin: 0;
 }
