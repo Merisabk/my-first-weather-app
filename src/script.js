@@ -137,7 +137,7 @@ function currentTemperature(response) {
   currentTemp.innerHTML = `${temperature}ºC`;
 }
 
-function currentLocation(position) {
+function getCurrentLocation(response) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let apiKey = "95322a94bc8878b37c06b9562667a92f";
@@ -145,11 +145,12 @@ function currentLocation(position) {
   axios.get(apiUrl).then(currentTemperature);
 }
 
-function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(currentLocation);
+function getCurrentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(getCurrentLocation);
 }
 
-let button = document.querySelector("button");
-button.addEventListener("click", getCurrentPosition);
+let geolocationButton = document.querySelector("#geolocation");
+geolocationButton.addEventListener("click", getCurrentPosition);
 
 search("London");
